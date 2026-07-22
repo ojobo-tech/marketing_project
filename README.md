@@ -1,5 +1,7 @@
 # AI Campaign Performance Scoring Decision-Support System
 
+This project builds an explainable campaign performance scoring system to help marketing teams prioritize campaigns, understand which campaigns are likely to perform well, and decide where to allocate effort and budget. The goal is not only prediction, but decision support.
+
 A modular AI decision-support project that scores marketing campaigns by likelihood of strong performance, explains why a campaign was ranked a certain way, and helps teams decide where to focus effort and budget.
 
 ## Project goal
@@ -53,8 +55,8 @@ This is a 5-day MVP project focused on:
 
 ## Target definition
 
-The primary target will be a binary label such as:
-- high performing campaign = 1
+The primary target will be a binary label that identifies whether a campaign is high performing. This makes the project suitable for campaign prioritization, ranking, and decision support.
+- high performing campaign = 1, if Conversion_Rate is in the top quartile of campaigns
 - not high performing = 0
 
 This will be derived from conversion performance.
@@ -85,6 +87,8 @@ This will be derived from conversion performance.
 - explainability outputs
 - ranked campaign scores
 - Streamlit dashboard
+
+The model will be evaluated not only on predictive performance, but also on interpretability, ranking usefulness, and whether the outputs can be understood and reviewed by a business user. Because this is a decision-support tool, the explanations and limitations matter as much as the score itself.
 
 ## Next steps
 
