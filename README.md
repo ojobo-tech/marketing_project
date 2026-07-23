@@ -126,7 +126,6 @@ The project is intended to help humans review, prioritize, and interpret campaig
 
 ## Repository structure
 
-```text
 campaign-scoring/
 ├── app/
 │   └── streamlit_app.py
