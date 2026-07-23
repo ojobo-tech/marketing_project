@@ -2,11 +2,12 @@
 
 This project builds an explainable campaign performance scoring system to help marketing teams prioritize campaigns, understand which campaigns are likely to perform well, and decide where to allocate effort and budget. The goal is not only prediction, but decision support.
 
-A modular AI decision-support project that scores marketing campaigns by likelihood of strong performance, explains why a campaign was ranked a certain way, and helps teams decide where to focus effort and budget.
+It is a modular AI decision-support project that scores marketing campaigns by likelihood of strong performance, explains why a campaign was ranked a certain way, and helps teams decide where to focus effort and budget.
 
 ## Project goal
 
-Build a practical campaign-scoring system that turns raw campaign data into:
+Turn raw marketing campaign data into:
+
 - a priority score
 - a ranked list of campaigns
 - explanation reasons
@@ -16,18 +17,20 @@ Build a practical campaign-scoring system that turns raw campaign data into:
 ## Business problem
 
 Marketing teams often have campaign data but no clear way to answer:
-- which campaigns are likely to perform well,
-- which audience and channel combinations are strongest,
-- where spend is being wasted,
-- and what action to take next.
 
-This project solves that by creating an end-to-end scoring and decision-support workflow.
+- which campaigns are likely to perform well
+- which audience and channel combinations are strongest
+- where spend is being wasted
+- what action to take next
+
+This project addresses that need by creating an end-to-end scoring and decision-support workflow.
 
 ## Dataset
 
 The project uses a marketing campaign performance dataset with roughly 200,000 rows across two years.
 
 Core columns include:
+
 - Company
 - Campaign_Type
 - Target_Audience
@@ -46,40 +49,29 @@ Core columns include:
 
 ## Scope
 
-This is a 5-day MVP project focused on:
+This is a  project focused on:
+
 - data understanding
 - feature engineering
 - model training and validation
 - explainability
-- Streamlit dashboard delivery
 
 ## Target definition
 
-The primary target will be a binary label that identifies whether a campaign is high performing. This makes the project suitable for campaign prioritization, ranking, and decision support.
-- high performing campaign = 1, if Conversion_Rate is in the top quartile of campaigns
-- not high performing = 0
+The primary target is a binary label that identifies whether a campaign is high performing. This makes the project suitable for campaign prioritization, ranking, and decision support.
 
-This will be derived from conversion performance.
+- `high_performing_campaign = 1` if `Conversion_Rate` is in the top quartile of campaigns
+- `high_performing_campaign = 0` otherwise
 
-## Repository structure
+This target is derived from conversion performance.
 
-- `data/` raw and processed datasets
-- `notebooks/` analysis and modeling notebooks
-- `src/` reusable pipeline code
-- `models/` saved model artifacts
-- `app/` Streamlit dashboard
-- `reports/` charts, outputs, and exported results
+## Responsible AI approach
 
-## Workflow
+This project is developed with a Responsible AI mindset. The goal is not only to predict campaign performance, but to do so in a way that is explainable, business-oriented, and mindful of how model outputs may influence marketing decisions.
 
-1. Load and inspect the campaign data
-2. Clean and standardize fields
-3. Engineer performance, efficiency, and time-based features
-4. Train and compare models
-5. Add explainability and business actions
-6. Deploy a Streamlit dashboard
+The model is evaluated not only on predictive performance, but also on interpretability, ranking usefulness, and whether the outputs can be understood and reviewed by a business user. Because this is a decision-support tool, the explanations and limitations matter as much as the score itself.
 
-## Deliverables
+## Key project outputs
 
 - cleaned dataset
 - engineered features
@@ -88,12 +80,70 @@ This will be derived from conversion performance.
 - ranked campaign scores
 - Streamlit dashboard
 
-The model will be evaluated not only on predictive performance, but also on interpretability, ranking usefulness, and whether the outputs can be understood and reviewed by a business user. Because this is a decision-support tool, the explanations and limitations matter as much as the score itself.
+## Repository structure
+
+```text
+campaign-scoring/
+├── app/
+│   └── streamlit_app.py
+├── data/
+│   ├── raw/
+│   └── processed/
+├── models/
+├── notebooks/
+│   ├── 01_problem_statement_and_data_understanding.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_modeling_and_validation.ipynb
+│   └── 04_xai_and_dashboard_logic.ipynb
+├── reports/
+│   ├── figures/
+│   └── outputs/
+├── src/
+│   └── end_to_end_pipeline.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+
+## Results and limitations
+
+The project demonstrates a complete campaign-scoring workflow from raw data to feature engineering, model training, validation, and explainability. The analysis also shows an important limitation: the current feature set does not produce strong predictive separation between high-performing and non-high-performing campaigns.
+
+Across the modeling experiments:
+- logistic regression remained close to random ranking performance
+- random forest did not materially improve ranking quality
+- gradient boosting also stayed near random
+- time-aware validation confirmed that this was not just a random-split issue
+
+The most important finding is that the raw campaign variables in this dataset have very weak standalone signal for strong classification at the current target definition. Numeric features showed almost no linear association with the target, and categorical features showed only very small differences in target rate across categories.
+
+This is still a valuable result. It means the project is honest about what the data can and cannot support. The value of the work is not only in the final score, but also in the disciplined workflow, feature audit, validation strategy, and business interpretation of weak signal.
+
+## Key findings
+
+- The dataset is structurally clean and suitable for analysis.
+- The target is moderately imbalanced, which makes ranking metrics more useful than accuracy alone.
+- Single-feature business variables do not strongly separate campaign performance.
+- Engineered efficiency and time features improve interpretability, but not enough to create strong predictive lift.
+- Time-aware validation confirms that the weak signal is persistent over time.
+- The strongest project outcome is the decision-support workflow, not a high-separation classifier.
+
+## Responsible AI considerations
+
+This project was developed with a Responsible AI mindset.
+
+That means:
+- outcome variables such as `Conversion_Rate` and `ROI` were treated carefully to avoid leakage
+- the model was evaluated using interpretable metrics and ranking-based metrics
+- the analysis avoided overclaiming causality from descriptive patterns
+- the limitations of the data and model were documented explicitly
+- the final output is positioned as decision support, not automated business truth
+
+The project is intended to help humans review, prioritize, and interpret campaigns more effectively, not to replace business judgment.
 
 ## Next steps
 
-1. Build the data understanding notebook
-2. Define the target and final feature set
-3. Train baseline and stronger models
-4. Add XAI and scoring logic
-5. Connect everything to Streamlit
+- enrich the dataset with historical and aggregate campaign features
+- test segment-level or company-level baselines
+- refine the target definition
+- improve interaction features
+- iterate on explainability
