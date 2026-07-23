@@ -1,0 +1,6 @@
+data/processed/
+models/
+notebooks/data/processed/
+notebooks/models/
+*.joblib
+.joblib

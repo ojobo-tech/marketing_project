@@ -124,26 +124,4 @@ The project is intended to help humans review, prioritize, and interpret campaig
 - improve interaction features
 - iterate on explainability
 
-## Repository structure
-
-campaign-scoring/
-├── app/
-│   └── streamlit_app.py
-├── data/
-│   ├── raw/
-│   └── processed/
-├── models/
-├── notebooks/
-│   ├── 01_problem_statement_and_data_understanding.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_modeling_and_validation.ipynb
-│   └── 04_xai_and_dashboard_logic.ipynb
-├── reports/
-│   ├── figures/
-│   └── outputs/
-├── src/
-│   └── end_to_end_pipeline.py
-├── .gitignore
-├── README.md
-└── requirements.txt
 
