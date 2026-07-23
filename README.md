@@ -80,30 +80,6 @@ The model is evaluated not only on predictive performance, but also on interpret
 - ranked campaign scores
 - Streamlit dashboard
 
-## Repository structure
-
-```text
-campaign-scoring/
-├── app/
-│   └── streamlit_app.py
-├── data/
-│   ├── raw/
-│   └── processed/
-├── models/
-├── notebooks/
-│   ├── 01_problem_statement_and_data_understanding.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_modeling_and_validation.ipynb
-│   └── 04_xai_and_dashboard_logic.ipynb
-├── reports/
-│   ├── figures/
-│   └── outputs/
-├── src/
-│   └── end_to_end_pipeline.py
-├── .gitignore
-├── README.md
-└── requirements.txt
-
 ## Results and limitations
 
 The project demonstrates a complete campaign-scoring workflow from raw data to feature engineering, model training, validation, and explainability. The analysis also shows an important limitation: the current feature set does not produce strong predictive separation between high-performing and non-high-performing campaigns.
@@ -140,10 +116,35 @@ That means:
 
 The project is intended to help humans review, prioritize, and interpret campaigns more effectively, not to replace business judgment.
 
-## Next steps
+## Future Enhancements
 
 - enrich the dataset with historical and aggregate campaign features
 - test segment-level or company-level baselines
 - refine the target definition
 - improve interaction features
 - iterate on explainability
+
+## Repository structure
+
+```text
+campaign-scoring/
+├── app/
+│   └── streamlit_app.py
+├── data/
+│   ├── raw/
+│   └── processed/
+├── models/
+├── notebooks/
+│   ├── 01_problem_statement_and_data_understanding.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_modeling_and_validation.ipynb
+│   └── 04_xai_and_dashboard_logic.ipynb
+├── reports/
+│   ├── figures/
+│   └── outputs/
+├── src/
+│   └── end_to_end_pipeline.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+
